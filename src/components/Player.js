@@ -6,15 +6,11 @@ import '../App.js'
 
 class Player extends React.Component {
 
-    constructor(props){
-        super(props);
-    
- 
-     
-    }
+  
     componentDidMount(){
-        //console.log(this.props.teamKey);
+       
     }
+
     render(){
         return(
         <div className="playerClass">

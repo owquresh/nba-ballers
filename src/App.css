@@ -1,7 +1,7 @@
 .App {
 
   height: 100vh;
-  background-color: rgb(52,58,64);
+  /* background-color: rgb(52,58,64); */
 }
 
 .cardImage{
@@ -10,19 +10,31 @@
   align-self: center;
 }
 
+.paginator{
 
+  border-color: gray;
+  border-top: 3px solid grey;
+  padding-top: 10px;
+}
 
 .container{
   display: flex;
   list-style: none;
+  color: black;
+ 
+  justify-content: space-between;
+  padding: 4px;
+
 }
 
 .page{
-padding: 10px;
-  border: 1px solid #dcdcdc;
+
+  padding: 10px;
+  border: 1px solid #0073bd;
   border-radius: 6px;
   margin-right: 10px;
   cursor: pointer;
+
 }
 
 .disabled{
@@ -31,9 +43,18 @@ padding: 10px;
 }
 
 .active{
-border: 2px solid #000;
-  font-weight: bold;
+border: 2px solid #17a2b8;
+font-weight: bold;
+background-color: #17a2b8
 }
+
+
+.navTabs{
+
+  padding-right: 10px;
+
+}
+
 
 .previous{
   padding: 10px;
@@ -49,9 +70,13 @@ border: 2px solid #000;
 .next{
   padding: 10px;
   border-radius: 6px;
+  border-color: blue;
   margin-right: 10px;
   cursor: pointer;
 }
+
+
+
 
 .containerTable{
   height: 100vh;
@@ -61,7 +86,7 @@ border: 2px solid #000;
 
   /* background: rgb(52,58,64); */
   justify-content: space-evenly;
-  align-items: center;
+  
   overflow-y: scroll;
 
 
@@ -73,13 +98,6 @@ border: 2px solid #000;
   padding: 10px;
 }
 
-/* .containerElement{
-  flex:1;
-  border-style: solid;
-  border-color: black;
-  padding: 10px;
-
-} */
 
 .App-logo {
   height: 40vmin;
