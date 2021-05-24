@@ -11,6 +11,7 @@ class App extends React.Component{
 	constructor(props){
 		super(props);
 
+		//initial state of our APP Component
 		this.state = {
 	  		players: [],
 	  		pageCount: 0,
@@ -22,6 +23,7 @@ class App extends React.Component{
 
   		};
   	
+		  //binding functions for our class to bind to THIS react context.
 		  this.getData = this.getData.bind(this);
 		  this.handleChange = this.handleChange.bind(this);
 		  this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,25 +48,28 @@ class App extends React.Component{
 			})
 	}
 
-    componentDidUpdate(){
+    
 
+	//grab data on component mounting  and setup default title
+	componentDidMount(){
+		document.title ="NBA-Ballers";
+	  	this.getData();
 	}
 
-	componentDidMount(_){
-	  	this.getData();
-	  }
 
+
+	//these two methods handle the search bar and updating the state 
+	//when a search is made and changing their respectives list
 	handleChange(event){
 		this.setState({search: event.target.value})
 	}
-
 	handleSubmit(event){
-	
-		console.log(this.state.search);
+
 		this.getData();
 		event.preventDefault();
 	}
 
+	//handles pagination using pageCurrentNumber index
 	handlePageChange(obje){
 		this.setState({pageCurrentNumber: obje.selected+1}, ()=>{
 			this.getData(); 
@@ -77,6 +82,9 @@ class App extends React.Component{
 
 
     render(){
+
+		//only render the elements if data 
+		//has been called and loaded into state
     	const{isLoading} = this.state
     	if(isLoading){
     		return null;
@@ -84,18 +92,12 @@ class App extends React.Component{
 
 	  return (
 	    <div className="App">
-		
-		
-		<Navbar bg="dark"  variant="dark">
-			<Navbar.Brand href="#home">NBA-Ballers</Navbar.Brand>
-		
-		
-			<Nav className="mr-auto">
-				<Nav.Link href="#home">Home</Nav.Link>
-				<Nav.Link href="#Team">Teams</Nav.Link>
-				
-			</Nav>
 
+	
+		
+		{/* Nav Bar and Search bar using Form/Formcontrol.  */}
+		<Navbar bg="dark"  variant="dark">
+			<Navbar.Brand >NBA-Ballers</Navbar.Brand>
 			<div className="navTabs">
 				<Button variant="primary" onClick={() => this.setState({showCards:true})}>Card</Button>{' '}
 				<Button variant="light" onClick={() => this.setState({showCards: false})}>List</Button>
@@ -109,6 +111,12 @@ class App extends React.Component{
 	  
 		
 
+
+		{/* Pagination tool imported from react paginate
+			uses static page count as pages are given from 
+			api call to balldontlie.api
+		
+		*/}
 		<div className="paginator">
 	     <Pagination>
 				<ReactPaginate 
@@ -129,6 +137,11 @@ class App extends React.Component{
 		
 
 		
+		{/* Table/Card list viewer for 
+			NBA player elements. works by mapping through state
+			and displaying Cards or Table list based on user input.
+		
+		*/}
 		<div className="containerTable">
 		
 
@@ -156,6 +169,7 @@ class App extends React.Component{
 		     			<th>First Name</th>
 		     			<th>Last Name</th>
 		     			<th>Height</th>
+						<th>Weight</th>
 		     			<th>Position</th>
 		     			<th>Team</th>
 		     		</tr>
@@ -170,7 +184,8 @@ class App extends React.Component{
 	     					<td>{player.first_name}</td>
 	     					<td>{player.last_name}</td>
 	     					<td>{(player.height_feet && player.height_inches) ? (player.height_feet + "'" + player.height_inches) : "Unknown"}</td>
-	     					<td>{player.position ? player.position : "Unknown"}</td>
+	     					<td>{player.weight_pounds ? player.weight_pounds + ' lbs' : "Unknown"}</td>
+							<td>{player.position ? player.position : "Unknown"}</td>
 	     					<td>{player.team.full_name}</td>
 	     				</tr>
 	     			))}

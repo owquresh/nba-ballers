@@ -4,6 +4,8 @@ import '../App.js'
 
 
 
+
+//Component for Player Card.
 class Player extends React.Component {
 
   
